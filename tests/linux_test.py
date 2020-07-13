@@ -8,8 +8,8 @@ cmd="sh ../scripts/dhcp_reset.sh"
 tshark_cmd="tshark -Y 'dhcp'"
 #print(shlex.split(cmd))
 #print(shlex.split(tshark_cmd))
-proc_var=subprocess.Popen(args=['sh', '../scripts/dhcp_reset.sh'])
 capture_proc=subprocess.Popen(args=['tshark','-a','duration:30','-w', 'linux_test_output.pcap'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+proc_var=subprocess.Popen(args=['sh', '../scripts/dhcp_reset.sh'])
 capture_proc.wait()
 cap=pyshark.FileCapture(input_file='linux_test_output.pcap')
 for p in cap:
