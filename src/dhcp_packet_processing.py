@@ -1,7 +1,41 @@
 import pyshark
 import sys
+import sys
 
-ERROR_CODES={'INCORRECT_USAGE':1,'PROCESS_ERROR':2,'PLOTTING_ERROR':3,'UNKNOWN':4}
+ERROR_CODES={'INCORRECT_USAGE':1,'PROCESS_ERROR':2,'PLOTTING_ERROR':3,
+'UNSUPPORTED_PLATFORM':4,'UNKNOWN':5}
+DHCP_PACKET_TYPES={}
+
+def get_current_platform(): #identify current operating system
+    if sys.platform.startswith('linux')
+        return 'linux'
+    elif sys.platform.startswith('win32')
+        return 'windows'
+    else:
+        print('Unsupported Platform!')
+        exit(ERROR_CODES['UNSUPPORTED_PLATFORM'])
+    pass
+
+def live_port_scan_pyshark(): #scan packets in real time using pyshark
+    
+    pass
+
+def live_port_scan_tshark(): #scan packets in real time with tshark
+    if cur_platform=='linux':
+        cmd="sh ../scripts/dhcp_reset.sh"
+        tshark_cmd="tshark -Y 'dhcp'"
+        proc_var=subprocess.Popen(args=['sh', '../scripts/dhcp_reset.sh'])
+        capture_proc=subprocess.Popen(args=['tshark','-a','duration:30','-w', 'linux_test_output.pcap'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        capture_proc.wait()
+    else:
+        
+    pass
+
+def scan_pcap_file(fname): #scan a file
+    pass
+
+def analyse_packet(pkt): #extract data about packet
+    pass
 
 def plot():
     try:
@@ -13,7 +47,6 @@ def plot():
 def packet_read():
     packet_file=sys.argv[1]
     cap=pyshark.FileCapture(input_file=packet_file)
-
     for pkt in cap:
         if 'DHCP' in pkt:
             print("dstn address: ",pkt['ip'].dst)

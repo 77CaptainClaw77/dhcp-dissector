@@ -14,7 +14,8 @@ capture_proc.wait()
 cap=pyshark.FileCapture(input_file='linux_test_output.pcap')
 for p in cap:
     if 'DHCP' in p: 
-        print(p['dhcp'])
+        if 'option_ip_address_lease_time' in dir(p['dhcp']):
+            print(p['dhcp'].option_ip_address_lease_time)
 cap.close()
 
 #proc_var=subprocess.run(['ls','-la'],stdout=subprocess.PIPE,text=True)
